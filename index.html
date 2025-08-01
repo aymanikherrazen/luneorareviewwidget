@@ -10,7 +10,7 @@
   }
   body {
     font-family: 'Montserrat', sans-serif;
-    background: #fafafa;
+    background: #fff;
     margin: 40px 20px;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@
   .slider-container {
     max-width: 700px;
     width: 100%;
-    background: #fff;
+    background: #fafafa;
     padding: 30px 40px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -171,6 +171,8 @@
 
   <div class="slides">
 
+    <!-- Tes slides ici -->
+    <!-- Exemple pour une slide -->
     <div class="slide" data-rs="tiktok" role="group" aria-roledescription="slide" aria-label="Avis de Sara, Sale">
       <img class="profile-pic" src="https://uploads.commoninja.com/reviews/1637762042902_Person2.png" alt="Photo de Sara" />
       <div class="client-name">Sara L.</div>
@@ -181,8 +183,7 @@
         <i class="fab fa-tiktok"></i> TikTok
       </div>
     </div>
-
-    <div class="slide" data-rs="instagram" role="group" aria-roledescription="slide" aria-label="Avis de Asmae, Casablanca">
+ <div class="slide" data-rs="instagram" role="group" aria-roledescription="slide" aria-label="Avis de Asmae, Casablanca">
       <img class="profile-pic" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="Photo de Asmae" />
       <div class="client-name">Asmae R.</div>
       <div class="stars" aria-label="Note 4 étoiles">★★★★☆</div>
@@ -248,6 +249,7 @@
       </div>
     </div>
 
+
   </div>
 
   <button class="nav-arrow nav-prev" aria-label="Avis précédent" aria-controls="slider" aria-keyshortcuts="ArrowLeft">&#10094;</button>
@@ -289,11 +291,20 @@
   }
 
   // Navigation boutons
-  prevBtn.addEventListener('click', () => showSlide(index - 1));
-  nextBtn.addEventListener('click', () => showSlide(index + 1));
+  prevBtn.addEventListener('click', () => {
+    showSlide(index - 1);
+    resetAutoSlide();
+  });
+  nextBtn.addEventListener('click', () => {
+    showSlide(index + 1);
+    resetAutoSlide();
+  });
 
   // Filtre par plateforme onchange
-  rsFilter.addEventListener('change', filterSlides);
+  rsFilter.addEventListener('change', () => {
+    filterSlides();
+    resetAutoSlide();
+  });
 
   // Init
   filterSlides();
@@ -309,10 +320,34 @@
   slides.addEventListener('pointerup', (e) => {
     if (!isDown) return;
     let diff = e.clientX - startX;
-    if(diff > 50) showSlide(index - 1);
-    else if(diff < -50) showSlide(index + 1);
+    if(diff > 50) {
+      showSlide(index - 1);
+      resetAutoSlide();
+    }
+    else if(diff < -50) {
+      showSlide(index + 1);
+      resetAutoSlide();
+    }
     isDown = false;
   });
+
+  // Auto slide setup
+  let autoSlideInterval = 4000; // 4000ms = 4 secondes
+  let autoSlideTimer;
+
+  function startAutoSlide() {
+    autoSlideTimer = setInterval(() => {
+      showSlide(index + 1);
+    }, autoSlideInterval);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideTimer);
+    startAutoSlide();
+  }
+
+  startAutoSlide();
+
 </script>
 
 </body>
