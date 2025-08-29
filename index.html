@@ -1,757 +1,423 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Témoignages Clients - LUNÉORA</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  :root {
-    --primary: #6F4E37;
-    --secondary: #B59B7B;
-    --light-primary: #E9DCD4;
-    --accent: #C4A88A;
-    --text: #333333;
-    --text-light: #595959;
-    --bg: #ffffff;
-    --shadow: rgba(0, 0, 0, 0.1);
-    --gold: #f5b50a;
-  }
-
-  body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--light-primary);
-    margin: 0;
-    padding: 60px 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .testimonials-section {
-    max-width: 1000px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .section-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 8px;
-    position: relative;
-    display: inline-block;
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 2px;
-  }
-
-  .section-subtitle {
-    color: var(--text-light);
-    font-size: 16px;
-    font-weight: 400;
-    max-width: 600px;
-    margin: 15px auto 30px;
-    line-height: 1.6;
-  }
-
-  .filter-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-
-  .filter-select {
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 25px;
-    border: 2px solid var(--secondary);
-    background: var(--bg);
-    color: var(--text);
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    outline: none;
-    min-width: 200px;
-  }
-
-  .filter-select:hover,
-  .filter-select:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.1);
-  }
-
-  .slider-container {
-    position: relative;
-    background: var(--bg);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(111, 78, 55, 0.1);
-    overflow: hidden;
-    border: 1px solid rgba(111, 78, 55, 0.08);
-  }
-
-  .slider-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-  }
-
-  .slides {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .slide {
-    min-width: 100%;
-    text-align: center;
-    padding: 20px;
-    opacity: 0;
-    animation: slideIn 0.6s ease forwards;
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .profile-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-
-  .profile-pic {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--secondary);
-    box-shadow: 0 8px 25px rgba(111, 78, 55, 0.15);
-    transition: all 0.3s ease;
-  }
-
-  .verified-badge {
-    position: absolute;
-    bottom: -2px;
-    right: -2px;
-    width: 28px;
-    height: 28px;
-    background: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid var(--bg);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-
-  .verified-badge i {
-    color: white;
-    font-size: 12px;
-  }
-
-  .client-name {
-    font-weight: 700;
-    font-size: 20px;
-    color: var(--text);
-    margin-bottom: 5px;
-  }
-
-  .stars {
-    color: var(--gold);
-    margin-bottom: 8px;
-    font-size: 22px;
-    letter-spacing: 2px;
-    text-shadow: 0 1px 3px rgba(245, 181, 10, 0.3);
-  }
-
-  .client-city {
-    font-size: 14px;
-    color: var(--text-light);
-    margin-bottom: 25px;
-    font-weight: 500;
-  }
-
-  .review-text {
-    font-size: 18px;
-    color: var(--text);
-    font-style: italic;
-    margin-bottom: 25px;
-    line-height: 1.6;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    padding: 0 20px;
-  }
-
-  .review-text::before,
-  .review-text::after {
-    content: '"';
-    font-size: 48px;
-    color: var(--secondary);
-    position: absolute;
-    top: -10px;
-    font-weight: 700;
-    opacity: 0.3;
-  }
-
-  .review-text::before {
-    left: -10px;
-  }
-
-  .review-text::after {
-    right: -10px;
-  }
-
-  .social-platform {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: linear-gradient(135deg, var(--secondary), var(--accent));
-    color: white;
-    padding: 12px 20px;
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-  }
-
-  .social-platform:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(111, 78, 55, 0.3);
-  }
-
-  .social-platform i {
-    font-size: 20px;
-  }
-
-  /* Navigation Arrows */
-  .nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--bg);
-    color: var(--primary);
-    border: 2px solid var(--secondary);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 25px rgba(111, 78, 55, 0.15);
-    transition: all 0.3s ease;
-    z-index: 10;
-  }
-
-  .nav-arrow:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 12px 30px rgba(111, 78, 55, 0.25);
-  }
-
-  .nav-prev {
-    left: -25px;
-  }
-
-  .nav-next {
-    right: -25px;
-  }
-
-  /* Progress Indicators */
-  .progress-dots {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 30px;
-  }
-
-  .progress-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--secondary);
-    opacity: 0.3;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .progress-dot.active {
-    opacity: 1;
-    background: var(--primary);
-    transform: scale(1.2);
-  }
-
-  /* Auto-slide indicator */
-  .auto-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    background: var(--primary);
-    transition: width 0.1s linear;
-    width: 0%;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    body {
-      padding: 40px 15px;
-    }
-
-    .section-title {
-      font-size: 24px;
-    }
-
-    .section-subtitle {
-      font-size: 14px;
-    }
-
-    .slider-container {
-      padding: 30px 20px;
-    }
-
-    .profile-pic {
-      width: 70px;
-      height: 70px;
-    }
-
-    .client-name {
-      font-size: 18px;
-    }
-
-    .review-text {
-      font-size: 16px;
-      padding: 0 15px;
-    }
-
-    .social-platform {
-      font-size: 14px;
-      padding: 10px 16px;
-    }
-
-    .nav-arrow {
-      width: 45px;
-      height: 45px;
-      font-size: 16px;
-    }
-
-    .nav-prev {
-      left: -22px;
-    }
-
-    .nav-next {
-      right: -22px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .filter-select {
-      min-width: 180px;
-      font-size: 14px;
-    }
-
-    .review-text::before,
-    .review-text::after {
-      font-size: 36px;
-    }
-  }
-
-  /* Accessibility improvements */
-  @media (prefers-reduced-motion: reduce) {
-    .slides,
-    .slide,
-    .nav-arrow,
-    .social-platform {
-      transition: none;
-    }
-    
-    .slide {
-      animation: none;
-      opacity: 1;
-    }
-  }
-
-  .slide:focus-within {
-    outline: 2px solid var(--primary);
-    outline-offset: 4px;
-    border-radius: 8px;
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--primary:#6F4E37;
+--secondary:#B59B7B;
+--light-primary:#E9DCD4;
+--accent:#C4A88A;
+--text:#333;
+--text-light:#595959;
+--bg:#fff;
+--shadow:rgba(0,0,0,.1);
+--gold:#f5b50a
+}
+body{
+font-family:Montserrat,sans-serif;
+background:var(--light-primary);
+margin:0;
+padding:40px 20px;
+display:flex;
+justify-content:center;
+flex-direction:column;
+align-items:center
+}
+.testimonials-section{max-width:1000px;width:100%;margin:0 auto}
+.section-header{text-align:center;margin-bottom:30px}
+.section-title{
+font-size:22px;
+font-weight:700;
+color:#000;
+margin-bottom:8px;
+position:relative;
+display:inline-block
+}
+.section-title::after{
+content:'';
+position:absolute;
+bottom:-8px;
+left:50%;
+transform:translateX(-50%);
+width:80px;
+height:3px;
+background:linear-gradient(90deg,var(--primary),var(--secondary));
+border-radius:2px
+}
+.section-subtitle{
+color:#595959;
+font-size:14px;
+font-weight:400;
+max-width:600px;
+margin:15px auto 20px;
+line-height:1.5
+}
+.filter-container{display:flex;justify-content:center;margin-bottom:25px}
+.filter-select{
+padding:10px 18px;
+font-size:14px;
+border-radius:25px;
+border:2px solid var(--secondary);
+background:var(--bg);
+color:var(--text);
+cursor:pointer;
+font-family:inherit;
+font-weight:500;
+transition:border-color .2s;
+outline:none;
+min-width:180px
+}
+.filter-select:hover,.filter-select:focus{border-color:var(--primary)}
+.slider-container{
+position:relative;
+background:var(--bg);
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(111,78,55,.1);
+overflow:hidden;
+border:1px solid rgba(111,78,55,.08)
+}
+.slider-container::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:3px;
+background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))
+}
+.slides{display:flex;transition:transform .4s ease}
+.slide{min-width:100%;text-align:center;padding:15px}
+.profile-container{position:relative;display:inline-block;margin-bottom:15px}
+.profile-pic{
+width:70px;
+height:70px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid var(--secondary);
+box-shadow:0 5px 15px rgba(111,78,55,.1)
+}
+.verified-badge{
+position:absolute;
+bottom:-2px;
+right:-2px;
+width:24px;
+height:24px;
+background:var(--primary);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+border:2px solid var(--bg)
+}
+.verified-badge i{color:#fff;font-size:10px}
+.client-name{font-weight:700;font-size:18px;color:var(--text);margin-bottom:5px}
+.stars{color:var(--gold);margin-bottom:6px;font-size:18px;letter-spacing:1px}
+.client-city{font-size:13px;color:var(--text-light);margin-bottom:20px;font-weight:500}
+.review-text{
+font-size:16px;
+color:var(--text);
+font-style:italic;
+margin-bottom:20px;
+line-height:1.5;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+position:relative;
+padding:0 15px
+}
+.review-text::before,.review-text::after{
+content:'"';
+font-size:36px;
+color:var(--secondary);
+position:absolute;
+top:-8px;
+font-weight:700;
+opacity:.3
+}
+.review-text::before{left:-5px}
+.review-text::after{right:-5px}
+.social-platform{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+background:linear-gradient(135deg,var(--secondary),var(--accent));
+color:#fff;
+padding:10px 16px;
+border-radius:20px;
+font-size:14px;
+font-weight:600;
+transition:transform .2s;
+cursor:pointer;
+border:none;
+text-decoration:none
+}
+.social-platform:hover{transform:translateY(-1px)}
+.nav-arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:var(--bg);
+color:var(--primary);
+border:2px solid var(--secondary);
+width:45px;
+height:45px;
+border-radius:50%;
+cursor:pointer;
+font-size:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:all .2s;
+z-index:10
+}
+.nav-arrow:hover{background:var(--primary);color:#fff;transform:translateY(-50%) scale(1.05)}
+.nav-prev{left:-22px}
+.nav-next{right:-22px}
+.progress-dots{display:flex;justify-content:center;gap:10px;margin-top:25px}
+.progress-dot{
+width:10px;
+height:10px;
+border-radius:50%;
+background:var(--secondary);
+opacity:.3;
+cursor:pointer;
+transition:all .2s
+}
+.progress-dot.active{opacity:1;background:var(--primary);transform:scale(1.1)}
+.auto-progress{
+position:absolute;
+bottom:0;
+left:0;
+height:3px;
+background:var(--primary);
+transition:width .1s linear;
+width:0%
+}
+@media (max-width:768px){
+body{padding:30px 15px}
+.section-title{font-size:20px}
+.section-subtitle{font-size:13px}
+.slider-container{padding:25px 15px}
+.profile-pic{width:65px;height:65px}
+.client-name{font-size:16px}
+.review-text{font-size:15px;padding:0 10px}
+.social-platform{font-size:13px;padding:8px 14px}
+.nav-arrow{width:40px;height:40px;font-size:14px}
+.nav-prev{left:-20px}
+.nav-next{right:-20px}
+}
+@media (max-width:480px){
+.filter-select{min-width:160px;font-size:13px}
+.review-text::before,.review-text::after{font-size:28px}
+}
+@media (prefers-reduced-motion:reduce){
+.slides,.nav-arrow,.social-platform{transition:none}
+}
+.slide:focus-within{outline:2px solid var(--primary);outline-offset:4px;border-radius:8px}
 </style>
 </head>
 <body>
-
 <div class="testimonials-section">
-  <div class="section-header">
-    <h2 class="section-title">Témoignages Clients</h2>
-    <p class="section-subtitle">Découvrez ce que nos clientes pensent de LUNÉORA à travers leurs expériences authentiques</p>
-  </div>
-
-  <div class="filter-container">
-    <select id="rsFilter" class="filter-select" aria-label="Filtrer les avis par plateforme">
-      <option value="all">Toutes les plateformes</option>
-      <option value="tiktok">TikTok</option>
-      <option value="instagram">Instagram</option>
-      <option value="facebook">Facebook</option>
-    </select>
-  </div>
-
-  <div class="slider-container" id="slider">
-    <div class="auto-progress" id="autoProgress"></div>
-    
-    <div class="slides">
-      <!-- Slide TikTok -->
-      <div class="slide" data-rs="tiktok" role="group" aria-label="Avis de Sara, Sale">
-        <div class="profile-container">
-          <img class="profile-pic" src="https://i.postimg.cc/QM5WNKyn/1637762042902-Person2-1-1.png" alt="Photo de Sara" />
-          <div class="verified-badge">
-            <i class="fas fa-check"></i>
-          </div>
-        </div>
-        <div class="client-name">Sara L.</div>
-        <div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
-        <div class="client-city">Sale, Maroc</div>
-        <div class="review-text">Texture légère, odeur agréable, et résultats visibles rapidement. Ma peau est plus douce et éclatante</div>
-        <div class="social-platform" tabindex="0">
-          <i class="fab fa-tiktok"></i> TikTok
-        </div>
-      </div>
-
-      <!-- Slide Instagram -->
-      <div class="slide" data-rs="instagram" role="group" aria-label="Avis de Asmae, Casablanca">
-        <div class="profile-container">
-          <img class="profile-pic" src="https://i.postimg.cc/tT67qRmC/clipboard-image-1756088275.webp" alt="Photo de Asmae" />
-          <div class="verified-badge">
-            <i class="fas fa-check"></i>
-          </div>
-        </div>
-        <div class="client-name">Asmae R.</div>
-        <div class="stars" aria-label="Note 4 étoiles">★★★★☆</div>
-        <div class="client-city">Casablanca, Maroc</div>
-        <div class="review-text">Ma3andi ma ngol, lproduit li bdit nsta3ml daba, dar lfar9 kbir f wjhi</div>
-        <div class="social-platform" tabindex="0">
-          <i class="fab fa-instagram"></i> Instagram
-        </div>
-      </div>
-
-      <!-- Slide Instagram -->
-      <div class="slide" data-rs="instagram" role="group" aria-label="Avis de Kawtar, Tanger">
-        <div class="profile-container">
-          <img class="profile-pic" src="https://i.postimg.cc/tT67qRmC/clipboard-image-1756088275.webp" alt="Photo de Kawtar" />
-          <div class="verified-badge">
-            <i class="fas fa-check"></i>
-          </div>
-        </div>
-        <div class="client-name">Kawtar J.</div>
-        <div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
-        <div class="client-city">Tanger, Maroc</div>
-        <div class="review-text">m3reftch kifach nckerkom wach 3la lproduit ola 3la livraison li f 24H ola service dyalkom li 3tani khater o jaweb 3la ts2olat dyali chokran luneora lghzala</div>
-        <div class="social-platform" tabindex="0">
-          <i class="fab fa-instagram"></i> Instagram
-        </div>
-      </div>
-
-      <!-- Slide Instagram -->
-      <div class="slide" data-rs="instagram" role="group" aria-label="Avis de Imane, Mohammedia">
-        <div class="profile-container">
-          <img class="profile-pic" src="https://i.postimg.cc/tT67qRmC/clipboard-image-1756088275.webp" alt="Photo de Imane" />
-          <div class="verified-badge">
-            <i class="fas fa-check"></i>
-          </div>
-        </div>
-        <div class="client-name">Imane A.</div>
-        <div class="stars" aria-label="Note 4 étoiles">★★★★☆</div>
-        <div class="client-city">Mohammedia, Maroc</div>
-        <div class="review-text">Livraison kanat mzyana w lproduct zwin. Lcontact dyal customer service dayman actif</div>
-        <div class="social-platform" tabindex="0">
-          <i class="fab fa-instagram"></i> Instagram
-        </div>
-      </div>
-
-      <!-- Slide TikTok -->
-      <div class="slide" data-rs="tiktok" role="group" aria-label="Avis de Karim, Eljadida">
-        <div class="profile-container">
-          <img class="profile-pic" src="https://i.postimg.cc/tT67qRmC/clipboard-image-1756088275.webp" alt="Photo de Karim" />
-          <div class="verified-badge">
-            <i class="fas fa-check"></i>
-          </div>
-        </div>
-        <div class="client-name">Karim B.</div>
-        <div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
-        <div class="client-city">Eljadida, Maroc</div>
-        <div class="review-text">Super expérience d'achat, livraison rapide et le SAV très à l'écoute. Je suis vraiment satisfait</div>
-        <div class="social-platform" tabindex="0">
-          <i class="fab fa-tiktok"></i> TikTok
-        </div>
-      </div>
-
-      <!-- Slide Instagram -->
-      <div class="slide" data-rs="instagram" role="group" aria-label="Avis de Khadija, Tetouan">
-        <div class="profile-container">
-          <img class="profile-pic" src="https://i.postimg.cc/FFcJmp2g/image-2025-08-25-031652109.webp" alt="Photo de Khadija" />
-          <div class="verified-badge">
-            <i class="fas fa-check"></i>
-          </div>
-        </div>
-        <div class="client-name">Khadija E.</div>
-        <div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
-        <div class="client-city">Tetouan, Maroc</div>
-        <div class="review-text">Khdit Pack comme un cadeaux lsa7bti tla3 wa3er o zwin o wlina bzouz knst3mlo had gamme o hta livraison zwina tbarkallah 3likom</div>
-        <div class="social-platform" tabindex="0">
-          <i class="fab fa-instagram"></i> Instagram
-        </div>
-      </div>
-
-      <!-- Slide Facebook -->
-      <div class="slide" data-rs="facebook" role="group" aria-label="Avis de Arwa, Rabat">
-        <div class="profile-container">
-          <img class="profile-pic" src="https://i.postimg.cc/cH7ZkvbY/portrait-young-woman-black-leather-jacket-looking-camera-2-1-1.webp" alt="Photo de Arwa" />
-          <div class="verified-badge">
-            <i class="fas fa-check"></i>
-          </div>
-        </div>
-        <div class="client-name">Arwa A.</div>
-        <div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
-        <div class="client-city">Rabat, Maroc</div>
-        <div class="review-text">J'ai vu une vraie différence sur ma peau après seulement deux semaines, je recommande ce gamme à 100% Merci Luneora</div>
-        <div class="social-platform" tabindex="0">
-          <i class="fab fa-facebook-f"></i> Facebook
-        </div>
-      </div>
-    </div>
-
-    <button class="nav-arrow nav-prev" aria-label="Avis précédent">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="nav-arrow nav-next" aria-label="Avis suivant">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-  </div>
-
-  <div class="progress-dots" id="progressDots"></div>
+<div class="section-header">
+<h2 class="section-title">Témoignages Clients</h2>
+<p class="section-subtitle">Découvrez ce que nos clientes pensent de LUNÉORA à travers leurs expériences authentiques</p>
 </div>
-
+<div class="filter-container">
+<select id="rsFilter" class="filter-select" aria-label="Filtrer les avis par plateforme">
+<option value="all">Toutes les plateformes</option>
+<option value="tiktok">TikTok</option>
+<option value="instagram">Instagram</option>
+<option value="facebook">Facebook</option>
+</select>
+</div>
+<div class="slider-container" id="slider">
+<div class="auto-progress" id="autoProgress"></div>
+<div class="slides">
+<div class="slide" data-rs="tiktok" role="group" aria-label="Avis de Sara, Sale">
+<div class="profile-container">
+<img class="profile-pic" src="https://i.postimg.cc/QM5WNKyn/1637762042902-Person2-1-1.png" alt="Photo de Sara" loading="lazy">
+<div class="verified-badge"><i class="fas fa-check"></i></div>
+</div>
+<div class="client-name">Sara L.</div>
+<div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
+<div class="client-city">Sale, Maroc</div>
+<div class="review-text">Texture légère, odeur agréable, et résultats visibles rapidement. Ma peau est plus douce et éclatante</div>
+<div class="social-platform" tabindex="0"><i class="fab fa-tiktok"></i> TikTok</div>
+</div>
+<div class="slide" data-rs="instagram" role="group" aria-label="Avis de Asmae, Casablanca">
+<div class="profile-container">
+<img class="profile-pic" src="https://i.postimg.cc/tT67qRmC/clipboard-image-1756088275.webp" alt="Photo de Asmae" loading="lazy">
+<div class="verified-badge"><i class="fas fa-check"></i></div>
+</div>
+<div class="client-name">Asmae R.</div>
+<div class="stars" aria-label="Note 4 étoiles">★★★★☆</div>
+<div class="client-city">Casablanca, Maroc</div>
+<div class="review-text">Ma3andi ma ngol, lproduit li bdit nsta3ml daba, dar lfar9 kbir f wjhi</div>
+<div class="social-platform" tabindex="0"><i class="fab fa-instagram"></i> Instagram</div>
+</div>
+<div class="slide" data-rs="instagram" role="group" aria-label="Avis de Kawtar, Tanger">
+<div class="profile-container">
+<img class="profile-pic" src="https://i.postimg.cc/tT67qRmC/clipboard-image-1756088275.webp" alt="Photo de Kawtar" loading="lazy">
+<div class="verified-badge"><i class="fas fa-check"></i></div>
+</div>
+<div class="client-name">Kawtar J.</div>
+<div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
+<div class="client-city">Tanger, Maroc</div>
+<div class="review-text">m3reftch kifach nckerkom wach 3la lproduit ola 3la livraison li f 24H ola service dyalkom li 3tani khater o jaweb 3la ts2olat dyali chokran luneora lghzala</div>
+<div class="social-platform" tabindex="0"><i class="fab fa-instagram"></i> Instagram</div>
+</div>
+<div class="slide" data-rs="instagram" role="group" aria-label="Avis de Imane, Mohammedia">
+<div class="profile-container">
+<img class="profile-pic" src="https://i.postimg.cc/tT67qRmC/clipboard-image-1756088275.webp" alt="Photo de Imane" loading="lazy">
+<div class="verified-badge"><i class="fas fa-check"></i></div>
+</div>
+<div class="client-name">Imane A.</div>
+<div class="stars" aria-label="Note 4 étoiles">★★★★☆</div>
+<div class="client-city">Mohammedia, Maroc</div>
+<div class="review-text">Livraison kanat mzyana w lproduct zwin. Lcontact dyal customer service dayman actif</div>
+<div class="social-platform" tabindex="0"><i class="fab fa-instagram"></i> Instagram</div>
+</div>
+<div class="slide" data-rs="tiktok" role="group" aria-label="Avis de Karim, Eljadida">
+<div class="profile-container">
+<img class="profile-pic" src="https://i.postimg.cc/tT67qRmC/clipboard-image-1756088275.webp" alt="Photo de Karim" loading="lazy">
+<div class="verified-badge"><i class="fas fa-check"></i></div>
+</div>
+<div class="client-name">Karim B.</div>
+<div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
+<div class="client-city">Eljadida, Maroc</div>
+<div class="review-text">Super expérience d'achat, livraison rapide et le SAV très à l'écoute. Je suis vraiment satisfait</div>
+<div class="social-platform" tabindex="0"><i class="fab fa-tiktok"></i> TikTok</div>
+</div>
+<div class="slide" data-rs="instagram" role="group" aria-label="Avis de Khadija, Tetouan">
+<div class="profile-container">
+<img class="profile-pic" src="https://i.postimg.cc/FFcJmp2g/image-2025-08-25-031652109.webp" alt="Photo de Khadija" loading="lazy">
+<div class="verified-badge"><i class="fas fa-check"></i></div>
+</div>
+<div class="client-name">Khadija E.</div>
+<div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
+<div class="client-city">Tetouan, Maroc</div>
+<div class="review-text">Khdit Pack comme un cadeaux lsa7bti tla3 wa3er o zwin o wlina bzouz knst3mlo had gamme o hta livraison zwina tbarkallah 3likom</div>
+<div class="social-platform" tabindex="0"><i class="fab fa-instagram"></i> Instagram</div>
+</div>
+<div class="slide" data-rs="facebook" role="group" aria-label="Avis de Arwa, Rabat">
+<div class="profile-container">
+<img class="profile-pic" src="https://i.postimg.cc/cH7ZkvbY/portrait-young-woman-black-leather-jacket-looking-camera-2-1-1.webp" alt="Photo de Arwa" loading="lazy">
+<div class="verified-badge"><i class="fas fa-check"></i></div>
+</div>
+<div class="client-name">Arwa A.</div>
+<div class="stars" aria-label="Note 5 étoiles">★★★★★</div>
+<div class="client-city">Rabat, Maroc</div>
+<div class="review-text">J'ai vu une vraie différence sur ma peau après seulement deux semaines, je recommande ce gamme à 100% Merci Luneora</div>
+<div class="social-platform" tabindex="0"><i class="fab fa-facebook-f"></i> Facebook</div>
+</div>
+</div>
+<button class="nav-arrow nav-prev" aria-label="Avis précédent"><i class="fas fa-chevron-left"></i></button>
+<button class="nav-arrow nav-next" aria-label="Avis suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+<div class="progress-dots" id="progressDots"></div>
+</div>
 <script>
-  class TestimonialSlider {
-    constructor() {
-      this.slides = document.querySelector('.slides');
-      this.slideAll = Array.from(document.querySelectorAll('.slide'));
-      this.prevBtn = document.querySelector('.nav-prev');
-      this.nextBtn = document.querySelector('.nav-next');
-      this.rsFilter = document.getElementById('rsFilter');
-      this.progressDots = document.getElementById('progressDots');
-      this.autoProgress = document.getElementById('autoProgress');
-      
-      this.index = 0;
-      this.filteredSlides = this.slideAll;
-      this.autoSlideInterval = 5000;
-      this.autoSlideTimer = null;
-      this.progressTimer = null;
-      
-      this.init();
-    }
-
-    init() {
-      this.createProgressDots();
-      this.bindEvents();
-      this.filterSlides();
-      this.startAutoSlide();
-    }
-
-    createProgressDots() {
-      this.progressDots.innerHTML = '';
-      this.filteredSlides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = `progress-dot ${i === 0 ? 'active' : ''}`;
-        dot.addEventListener('click', () => {
-          this.showSlide(i);
-          this.resetAutoSlide();
-        });
-        this.progressDots.appendChild(dot);
-      });
-    }
-
-    updateProgressDots() {
-      const dots = this.progressDots.querySelectorAll('.progress-dot');
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === this.index);
-      });
-    }
-
-    showSlide(i) {
-      if (i < 0) this.index = this.filteredSlides.length - 1;
-      else if (i >= this.filteredSlides.length) this.index = 0;
-      else this.index = i;
-      
-      this.slides.style.transform = `translateX(-${this.index * 100}%)`;
-      this.updateProgressDots();
-      
-      // Reset progress bar
-      this.autoProgress.style.width = '0%';
-    }
-
-    filterSlides() {
-      const filter = this.rsFilter.value;
-      
-      if (filter === 'all') {
-        this.filteredSlides = this.slideAll;
-      } else {
-        this.filteredSlides = this.slideAll.filter(slide => slide.dataset.rs === filter);
-      }
-      
-      // Update DOM
-      this.slides.innerHTML = '';
-      this.filteredSlides.forEach(slide => {
-        const slideClone = slide.cloneNode(true);
-        this.slides.appendChild(slideClone);
-      });
-      
-      this.index = 0;
-      this.createProgressDots();
-      this.showSlide(this.index);
-    }
-
-    startAutoSlide() {
-      this.autoSlideTimer = setInterval(() => {
-        this.showSlide(this.index + 1);
-      }, this.autoSlideInterval);
-      
-      // Progress bar animation
-      this.startProgressBar();
-    }
-
-    startProgressBar() {
-      this.autoProgress.style.width = '0%';
-      this.autoProgress.style.transition = `width ${this.autoSlideInterval}ms linear`;
-      
-      setTimeout(() => {
-        this.autoProgress.style.width = '100%';
-      }, 50);
-    }
-
-    resetAutoSlide() {
-      clearInterval(this.autoSlideTimer);
-      this.autoProgress.style.width = '0%';
-      this.autoProgress.style.transition = 'none';
-      
-      setTimeout(() => {
-        this.startAutoSlide();
-      }, 100);
-    }
-
-    bindEvents() {
-      this.prevBtn.addEventListener('click', () => {
-        this.showSlide(this.index - 1);
-        this.resetAutoSlide();
-      });
-
-      this.nextBtn.addEventListener('click', () => {
-        this.showSlide(this.index + 1);
-        this.resetAutoSlide();
-      });
-
-      this.rsFilter.addEventListener('change', () => {
-        this.filterSlides();
-        this.resetAutoSlide();
-      });
-
-      // Touch/Swipe support
-      let startX = 0;
-      let isDown = false;
-
-      this.slides.addEventListener('pointerdown', (e) => {
-        startX = e.clientX;
-        isDown = true;
-        this.slides.style.cursor = 'grabbing';
-      });
-
-      this.slides.addEventListener('pointerup', (e) => {
-        if (!isDown) return;
-        
-        const diff = e.clientX - startX;
-        if (Math.abs(diff) > 50) {
-          if (diff > 0) {
-            this.showSlide(this.index - 1);
-          } else {
-            this.showSlide(this.index + 1);
-          }
-          this.resetAutoSlide();
-        }
-        
-        isDown = false;
-        this.slides.style.cursor = 'grab';
-      });
-
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          this.showSlide(this.index - 1);
-          this.resetAutoSlide();
-        } else if (e.key === 'ArrowRight') {
-          this.showSlide(this.index + 1);
-          this.resetAutoSlide();
-        }
-      });
-
-      // Pause on hover
-      this.slides.addEventListener('mouseenter', () => {
-        clearInterval(this.autoSlideTimer);
-        this.autoProgress.style.animationPlayState = 'paused';
-      });
-
-      this.slides.addEventListener('mouseleave', () => {
-        this.resetAutoSlide();
-      });
-    }
-  }
-
-  // Initialize slider when DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    new TestimonialSlider();
-  });
+class TestimonialSlider{
+constructor(){
+this.slides=document.querySelector('.slides');
+this.slideAll=Array.from(document.querySelectorAll('.slide'));
+this.prevBtn=document.querySelector('.nav-prev');
+this.nextBtn=document.querySelector('.nav-next');
+this.rsFilter=document.getElementById('rsFilter');
+this.progressDots=document.getElementById('progressDots');
+this.autoProgress=document.getElementById('autoProgress');
+this.index=0;
+this.filteredSlides=this.slideAll;
+this.autoSlideInterval=4000;
+this.autoSlideTimer=null;
+this.init()
+}
+init(){
+this.createProgressDots();
+this.bindEvents();
+this.filterSlides();
+this.startAutoSlide()
+}
+createProgressDots(){
+this.progressDots.innerHTML='';
+this.filteredSlides.forEach((_,i)=>{
+const dot=document.createElement('div');
+dot.className=`progress-dot ${i===0?'active':''}`;
+dot.onclick=()=>{this.showSlide(i);this.resetAutoSlide()};
+this.progressDots.appendChild(dot)
+})
+}
+updateProgressDots(){
+const dots=this.progressDots.querySelectorAll('.progress-dot');
+dots.forEach((dot,i)=>dot.classList.toggle('active',i===this.index))
+}
+showSlide(i){
+if(i<0)this.index=this.filteredSlides.length-1;
+else if(i>=this.filteredSlides.length)this.index=0;
+else this.index=i;
+this.slides.style.transform=`translateX(-${this.index*100}%)`;
+this.updateProgressDots();
+this.autoProgress.style.width='0%'
+}
+filterSlides(){
+const filter=this.rsFilter.value;
+this.filteredSlides=filter==='all'?this.slideAll:this.slideAll.filter(slide=>slide.dataset.rs===filter);
+this.slides.innerHTML='';
+this.filteredSlides.forEach(slide=>this.slides.appendChild(slide.cloneNode(true)));
+this.index=0;
+this.createProgressDots();
+this.showSlide(this.index)
+}
+startAutoSlide(){
+this.autoSlideTimer=setInterval(()=>this.showSlide(this.index+1),this.autoSlideInterval);
+this.startProgressBar()
+}
+startProgressBar(){
+this.autoProgress.style.width='0%';
+this.autoProgress.style.transition=`width ${this.autoSlideInterval}ms linear`;
+setTimeout(()=>this.autoProgress.style.width='100%',50)
+}
+resetAutoSlide(){
+clearInterval(this.autoSlideTimer);
+this.autoProgress.style.width='0%';
+this.autoProgress.style.transition='none';
+setTimeout(()=>this.startAutoSlide(),100)
+}
+bindEvents(){
+this.prevBtn.onclick=()=>{this.showSlide(this.index-1);this.resetAutoSlide()};
+this.nextBtn.onclick=()=>{this.showSlide(this.index+1);this.resetAutoSlide()};
+this.rsFilter.onchange=()=>{this.filterSlides();this.resetAutoSlide()};
+let startX=0,isDown=false;
+this.slides.onpointerdown=e=>{startX=e.clientX;isDown=true;this.slides.style.cursor='grabbing'};
+this.slides.onpointerup=e=>{
+if(!isDown)return;
+const diff=e.clientX-startX;
+if(Math.abs(diff)>50){
+diff>0?this.showSlide(this.index-1):this.showSlide(this.index+1);
+this.resetAutoSlide()
+}
+isDown=false;
+this.slides.style.cursor='grab'
+};
+document.onkeydown=e=>{
+if(e.key==='ArrowLeft'){this.showSlide(this.index-1);this.resetAutoSlide()}
+else if(e.key==='ArrowRight'){this.showSlide(this.index+1);this.resetAutoSlide()}
+};
+this.slides.onmouseenter=()=>clearInterval(this.autoSlideTimer);
+this.slides.onmouseleave=()=>this.resetAutoSlide()
+}
+}
+document.addEventListener('DOMContentLoaded',()=>new TestimonialSlider());
 </script>
-
 </body>
 </html>
